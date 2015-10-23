@@ -1,0 +1,62 @@
+<html>
+  <head>
+
+  <script src="lib/codemirror.js"></script>
+  <link rel="stylesheet" href="lib/codemirror.css">
+  <link rel="stylesheet" href="theme/seti.css">
+  <style> .CodeMirror { width: 500; height: 200; }</style>
+  <script src="mode/javascript/javascript.js">
+
+    </script>
+  </head>
+  <body>
+  <p> Sample1: Hello, IoT.js
+
+    <script language='javascript'>
+var sample2 = "var count=0;\n\
+var on = false; \n\
+var t = setInterval(function() {\n\
+  count++; \n\
+  if(count > 10) clearInterval(t); \n\
+  gpio.writePin(1,on,function(){ on=!on;}); \n\
+},500);"
+
+var myCodeMirror = CodeMirror(document.body, {
+  value: "console.log('Hello, IoT.js');",
+  mode:  "javascript",
+  theme: "seti"
+});
+</script>
+
+  <p> Sample2: LED Blink for 5 seconds
+ <script language='javascript'>
+var myCodeMirror2 = CodeMirror(document.body, {
+  value: sample2,
+  mode:  "javascript",
+  theme: "seti"
+});
+</script>
+
+<p> Sample3: Light On when Dark
+  <script language='javascript'>
+var sample3 =
+"gpio.setPin(4,'in', function(){ \n\
+  setInterval(function() {\n\
+    gpio.readPin(4, function(err,value) {\n\
+      if(value == false) gpio.writePin(1,true);\n\
+      else gpio.writePin(1,false);\n\
+    });\n\
+  }, 1000);\n\
+});"
+
+var myCodeMirror3 = CodeMirror(document.body, {
+  value: sample3,
+  mode:  "javascript",
+  theme: "seti"
+});
+</script>
+
+
+
+ </body>
+</html>
